@@ -19,7 +19,7 @@ public class MainController {
 
     private final Random random = new Random();
 
-    List<String> seznamObrazku = Arrays.asList("https://source.unsplash.com/0d-z8cJGIR4/1600x900", "https://source.unsplash.com/SdU2RpuynFU/1600x900", "https://source.unsplash.com/NEsz4hYgAPo/1600x900", "https://source.unsplash.com/NEsz4hYgAPo/-opXKweGtDM");
+    private List<String> seznamObrazku = Arrays.asList("0d-z8cJGIR4", "SdU2RpuynFU", "NEsz4hYgAPo", "opXKweGtDM");
 
     private static List<String> readAllLines(String resource)throws IOException {
         //Soubory z resources se získávají pomocí classloaderu. Nejprve musíme získat aktuální classloader.
@@ -37,7 +37,7 @@ public class MainController {
         }
     }
 
-    List<String> seznamCitatu;
+    private List<String> seznamCitatu;
 
     {
         try {
@@ -52,11 +52,11 @@ public class MainController {
 
         ModelAndView result = new ModelAndView("index");
 
-        int indexVybranehoObrazku = random.nextInt(3);
+        int indexVybranehoObrazku = random.nextInt(seznamObrazku.size());
         String vybranyObrazek = seznamObrazku.get(indexVybranehoObrazku);
-        result.addObject("obrazek",vybranyObrazek);
+        result.addObject("obrazek","https://source.unsplash.com/" + vybranyObrazek + "/1600x900");
 
-        int indexVybranehoCitatu = random.nextInt(7);
+        int indexVybranehoCitatu = random.nextInt(seznamCitatu.size());
         String vybranyCitat = seznamCitatu.get(indexVybranehoCitatu);
         result.addObject("citat",vybranyCitat);
 
